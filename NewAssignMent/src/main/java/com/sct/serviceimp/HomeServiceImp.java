@@ -26,49 +26,29 @@ public class HomeServiceImp implements HomeService
 		return c;
 	}
 
-	public void addStudent(Student s) 
-	{
-		Student st= hr.save(s);
-		
-	}
-
-
-	@Override
-	public List<Student> getStudent() {
-
-		   List<Student> ls=hr.findAll();
-			return ls;
-	}
-
-	public void deleteCourse(int cid) 
-	{
-		cr.deleteById(cid);
-		
-	}
-
-	@Override
-	public List<Student> getDataByCourse(int cid)
-	{
-		List<Student> lStudents=hr.findByCourseId(cid);
-		return null;
-	}
-
-	@Override
-	public List<Student> getoneOrMoreCourse() 
-	{
-		Course course=new Course();
-		int newid= course.getCid();
-		if (newid>1) 
-		{
-			List<Student>list=hr.findAll();
-		}
-		else {
-			System.out.println("Student have only one course ");
-		}
-		return null;
-	}
-
-	
+	/*
+	 * public void addStudent(Student s) { Student st= hr.save(s);
+	 * 
+	 * }
+	 * 
+	 * 
+	 * @Override public List<Student> getStudent() {
+	 * 
+	 * List<Student> ls=hr.findAll(); return ls; }
+	 * 
+	 * public void deleteCourse(int cid) { cr.deleteById(cid);
+	 * 
+	 * }
+	 * 
+	 * @Override public List<Student> getDataByCourse(int cid) { List<Student>
+	 * lStudents=hr.findByCourseId(cid); return null; }
+	 * 
+	 * @Override public List<Student> getoneOrMoreCourse() { Course course=new
+	 * Course(); int newid= course.getCid(); if (newid>1) {
+	 * List<Student>list=hr.findAll(); } else {
+	 * System.out.println("Student have only one course "); } return null; }
+	 * 
+	 */
 	
 	 
 	 

@@ -1,6 +1,8 @@
 package com.sct.model;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -8,37 +10,40 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "students")
 public class Student
 {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
    private int sid;
 	
-	@Column(name = "Name")
-   private String name;
 	
-	@Override
-	public String toString() {
-		return "Student [sid=" + sid + ", name=" + name + ", email=" + email + ", phone=" + phone + ", course=" + course
-				+ "]";
-	}
+   private String name;
 
-
-	@Column(name="Email")
+	
    private String email;
 	
-	@Column(name="Phone")
    private long phone;
+   @ManyToMany(cascade = CascadeType.ALL)
+   private Set<Course> courses= new HashSet<>();
    
-	
-   @Column(name="Course")
-   @OneToMany(cascade = CascadeType.ALL,mappedBy="Student")
-   private List<Course> course;
+	public Set<Course> getCoursesSet() {
+	return courses;
+}
 
-	
+
+public void setCoursesSet(Set<Course> coursesSet) {
+	this.courses = coursesSet;
+}
+
+
 	public int getSid() {
 		return sid;
 	}
@@ -78,15 +83,7 @@ public class Student
 		this.phone = phone;
 	}
 	
+
 	
-	public List<Course> getCourse() {
-		return course;
-	}
-	
-	
-	public void setCourse(List<Course> course) {
-		this.course = course;
-	}
-	   
-	   
+
 }

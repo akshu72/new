@@ -1,12 +1,17 @@
 package com.sct.model;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
+@Table(name = "courses")
 @Entity
 public class Course 
 {
@@ -15,16 +20,16 @@ public class Course
    private int cid;
    private String Name;
    private String professorName;
-   private String Description;
-   @ManyToOne(cascade = CascadeType.ALL)
-   private Student student;
-   
-public Student getStudent() {
+   public Set<Student> getStudent() {
 	return student;
 }
-public void setStudent(Student student) {
-	this.student = student;
-}
+	public void setStudent(Set<Student> student) {
+		this.student = student;
+	}
+	private String Description;
+   @ManyToMany(mappedBy = "courses")
+   private Set<Student> student= new HashSet<>(); 
+  
 	public String getName() {
 		return Name;
 	}
